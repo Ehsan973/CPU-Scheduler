@@ -1,0 +1,3 @@
+C:/Users/Ehsan973/Desktop/Term 4 (Mehr 1400)/Operation Systems/Projects/3(git)/cmake-build-debug/CMakeFiles/3_git_.dir
+C:/Users/Ehsan973/Desktop/Term 4 (Mehr 1400)/Operation Systems/Projects/3(git)/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ehsan973/Desktop/Term 4 (Mehr 1400)/Operation Systems/Projects/3(git)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
