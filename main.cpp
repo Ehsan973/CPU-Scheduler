@@ -74,6 +74,24 @@ void sjf(const vector<Dvec>& pses){
         oneCycle();
     }
 }
+void fcfs(const vector<Dvec>& pses){
+    queue<Dvec> q;
+    for (const auto& e: pses)
+        q.push(e);
+
+    auto oneCycle=[&](){
+        Dvec &process= q.front();
+        process[0]--;
+        if(process[0]==0)
+            q.pop();
+    };
+
+    while (!q.empty()){
+        cout<< "process with id="<<q.front()[1]<<" running " <<endl;
+        oneCycle();
+    }
+}
+
 int main() {
     vector<Dvec> processes;
 
@@ -93,6 +111,15 @@ int main() {
         });
         RoundRobin(1,processes);
     }
+
+    if (alg==FCFS)
+        fcfs(processes);
+
+    cout<<"finished";
+
+
+
+
 
     return 0;
 }
