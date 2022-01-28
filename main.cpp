@@ -37,13 +37,62 @@ void getInput(vector<Dvec> &ps){
         even=!even;
     }
 }
+void RoundRobin(const char quantum, const vector<Dvec>& pses){
+    queue<Dvec> q;
+    for (const auto& e: pses)
+        q.push(e);
+
+    auto oneRound=[&](){
+        Dvec process= q.front();
+        process[0]-=quantum;
+        q.pop();
+        if(process[0]>0)
+            q.push(process);
+
+    };
+
+    while (!q.empty()){
+        cout<< "process with id="<<q.front()[1]<<" running "<<endl;
+        oneRound();
+    }
+
+}
+void sjf(const vector<Dvec>& pses){
+    queue<Dvec> q;
+    for (const auto& e: pses)
+        q.push(e);
+
+    auto oneCycle=[&](){
+        Dvec &process= q.front();
+        process[0]--;
+        if(process[0]==0)
+            q.pop();
+    };
+
+    while (!q.empty()){
+        cout<< "process with id="<<q.front()[1]<<" running " <<endl;
+        oneCycle();
+    }
+}
 int main() {
     vector<Dvec> processes;
 
     getAlg();
     getInput(processes);
 
+    if(alg==SJF){
+        sort(processes.begin(),processes.end(),[](Dvec a, Dvec b){
+            return(a[0]<b[0]);
+        });
+        sjf(processes);
+    }
 
+    if(alg==RR){
+        sort(processes.begin(),processes.end(),[](Dvec a, Dvec b){
+            return(a[1]<b[1]);
+        });
+        RoundRobin(1,processes);
+    }
 
     return 0;
 }
